@@ -8,6 +8,8 @@ function posixify(file) {
 	return file.replace(/[/\\]/g, '/');
 }
 
+function _interopEsmDefault(mod) { return mod && mod.__esModule && mod.default ? mod.default : mod; }
+
 const virtualModules = new Map();
 let index = 0;
 
@@ -26,7 +28,8 @@ for (let i = 0; i < process.argv.length; i++) {
 
 try {
 	const configPath = path.resolve(process.cwd(), configFile);
-	const config = require(configPath);
+	const config = _interopEsmDefault(require(configPath));
+	
 	let found = false;
 	if (Array.isArray(config)) {
 		found = config.some(check);
